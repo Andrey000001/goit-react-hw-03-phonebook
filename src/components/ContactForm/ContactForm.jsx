@@ -11,6 +11,7 @@ export const ContactForm = ({ addUser }) => {
     addUser(values);
   };
 
+  
   return (
     <Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
       <StyledForm>

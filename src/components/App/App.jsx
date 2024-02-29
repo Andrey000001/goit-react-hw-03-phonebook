@@ -19,6 +19,23 @@ class App extends Component {
       contacts: prevState.contacts.filter(({ id }) => id !== ids),
     }));
   };
+  componentDidMount() {
+    const localGetContacts = localStorage.getItem('contact');
+    const parceGet = JSON.parse(localGetContacts);
+    console.log(parceGet);
+    if (parceGet) {
+      this.setState({ contacts: parceGet });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevContacts = prevState.contacts;
+    const currentContacts = this.state.contacts;
+    if (prevContacts !== currentContacts) {
+      localStorage.setItem('contact', JSON.stringify(currentContacts));
+    }
+  }
+
   addUser = allInfoUser => {
     const { name } = allInfoUser;
     const { contacts } = this.state;
